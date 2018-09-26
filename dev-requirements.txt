@@ -1,0 +1,4 @@
+pytest
+pylama
+docker-compose
+-r requirements.txt

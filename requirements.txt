@@ -1,0 +1,5 @@
+setuptools
+napalm
+click
+docker
+jinja2

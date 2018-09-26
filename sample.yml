@@ -1,0 +1,30 @@
+---
+
+eos1:
+  driver: eos
+  hostname: 0.0.0.0
+  port: 44331
+  transport: https
+  username: test
+  password: test
+  bgp:
+    local-as: 65001
+    neighbors:
+      192.168.1.2:
+        remote-as: 65002
+    networks:
+      - 100.100.100.0/24
+eos2:
+  driver: eos
+  hostname: 0.0.0.0
+  port: 44332
+  transport: https
+  username: test
+  password: test
+  bgp:
+    local-as: 65002
+    neighbors:
+      192.168.1.1:
+        remote-as: 65001
+    networks:
+      - 200.200.200.0/24

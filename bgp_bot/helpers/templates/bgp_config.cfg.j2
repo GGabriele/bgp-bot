@@ -1,0 +1,7 @@
+router bgp {{ data['local-as'] }}
+{% for neighbor in data['neighbors'] %}
+neighbor {{ neighbor }} remote-as {{ data['neighbors'][neighbor]['remote-as'] }}
+{% endfor %}
+{% for network in data['networks'] %}
+network {{ network }}
+{% endfor %}

@@ -1,0 +1,56 @@
+---
+version: '2.1'
+networks:
+    net1:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.20.18.0/24
+    net2:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.20.19.0/24
+services:
+    ceos1:
+        image: ggabriele/arista-eos
+        entrypoint:
+            - /sbin/init
+        networks:
+            net1:
+                ipv4_address: 172.20.18.2
+            net2:
+                ipv4_address: 172.20.19.2
+        ports:
+            - '2222:22'
+            - '8001:80'
+            - '44331:443'
+        privileged: true
+        environment:
+            CEOS: 1
+            container: docker
+            EOS_PLATFORM: ceossim
+            SKIP_ZEROTOUCH_BARRIER_IN_SYSDBINIT: 1
+            ETBA: 1
+            INTFTYPE: eth
+    ceos2:
+        image: ggabriele/arista-eos
+        entrypoint:
+            - /sbin/init
+        networks:
+            net1:
+                ipv4_address: 172.20.18.3
+            net2:
+                ipv4_address: 172.20.19.3
+        ports:
+            - '2223:22'
+            - '8002:80'
+            - '44332:443'
+        privileged: true
+        environment:
+            CEOS: 1
+            container: docker
+            EOS_PLATFORM: ceossim
+            SKIP_ZEROTOUCH_BARRIER_IN_SYSDBINIT: 1
+            ETBA: 1
+            INTFTYPE: eth
