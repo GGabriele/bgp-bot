@@ -1,4 +1,4 @@
-# Dump CLI tool to control basic BGP
+# Dumb CLI tool to control basic BGP
 
 ### Install
 
