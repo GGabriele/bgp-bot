@@ -1,4 +1,4 @@
-setuptools
+setuptools>=38.4.0
 napalm
 click
 docker

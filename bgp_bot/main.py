@@ -7,7 +7,7 @@ from . import show, deploy
 
 @click.group()
 @click.option('--config', default="sample.yml",
-              help="Configuration fail to use")
+              help="Configuration file to use")
 @click.pass_context
 def run(ctx, config):
     """Main entry point."""
