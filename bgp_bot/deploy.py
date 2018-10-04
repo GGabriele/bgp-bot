@@ -17,4 +17,4 @@ def deploy(ctx, host):
     config_file = os.path.join("/tmp/", "bgp_config.cfg")
     with open(config_file, "w") as f:
         f.write(misc.render("bgp_config.cfg.j2", data=ctx.obj['config'][host]['bgp']))
-    napalm_helper.commit_config(ctx.obj['config'], host, config_file)
+    napalm_helper.commit_config(host, ctx.obj['config'], config_file)

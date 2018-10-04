@@ -4,15 +4,15 @@ import sys
 
 import napalm
 
-import misc
 
 CONNECTION_KEYS = ['hostname', 'username', 'password']
 
 
 def open_session(host, config):
-    driver = napalm.get_network_driver(config[host].pop('driver'))
-    transport = config[host].pop('transport', None)
-    port = config[host].pop('port', None)
+    """Open session using napalm."""
+    driver = napalm.get_network_driver(config[host].get('driver'))
+    transport = config[host].get('transport', None)
+    port = config[host].get('port', None)
     device_config = {k: v for k, v in config[host].items() if k in CONNECTION_KEYS}
     if transport or port:
         optional_args = {'port': port, 'transport': transport}
@@ -22,7 +22,8 @@ def open_session(host, config):
     return device
 
 
-def execute(config, host, napalm_func):
+def execute(host, config, napalm_func):
+    """Execute napalm API call."""
     if host in config:
         device = open_session(host, config)
     else:
@@ -31,7 +32,7 @@ def execute(config, host, napalm_func):
     return getattr(device, napalm_func)()
 
 
-def commit_config(config, host, config_file):
+def commit_config(host, config, config_file):
     device = open_session(host, config)
     device.load_merge_candidate(config_file)
     return device.commit_config()

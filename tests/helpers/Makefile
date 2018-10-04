@@ -7,9 +7,9 @@ commands:
 	bash commands.sh
 
 .PHONY: up
-up:
+up: down
 	docker-compose up -d
-	sleep 60
+	sleep 90
 	bash commands.sh
 
 .PHONY: down

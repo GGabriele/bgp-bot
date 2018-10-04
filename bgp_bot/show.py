@@ -33,4 +33,4 @@ def show(ctx, host, neighbors, bgp_config, neighbors_detail):
         func = 'get_bgp_neighbors_detail'
     else:
         func = 'get_bgp_config'
-    print json.dumps(napalm_helper.execute(ctx.obj['config'], host, func), indent=4)
+    print json.dumps(napalm_helper.execute(host, ctx.obj['config'], func), indent=4)
